@@ -36,8 +36,22 @@ RUN sudo chmod +x /usr/bin/run-hadoop.sh
 COPY conf/init-hdfs.sh /usr/bin/init-hdfs.sh
 RUN sudo chmod +x /usr/bin/init-hdfs.sh
 
+# Use a template to calculate the amount of map and reduce tasks depending on amount of cores
+COPY conf/mapred-site-template.xml /usr/bin/mapred-site-template.xml
+COPY conf/adapt-mapred-config.sh /usr/bin/adapt-mapred-config.sh
+RUN sudo chmod +x /usr/bin/adapt-mapred-config.sh
+
 COPY conf/execute-wordcount.sh /usr/bin/execute-wordcount.sh
 RUN sudo chmod +x /usr/bin/execute-wordcount.sh
 
+# Credits to https://github.com/sequenceiq/hadoop-docker/blob/master/Dockerfile
+#Hdfs ports
+EXPOSE 50010 50020 50070 50075 50090
+# Mapred ports
+EXPOSE 19888
+#Yarn ports
+EXPOSE 8030 8031 8032 8033 8040 8042 8088
+#Other ports
+EXPOSE 49707 2122   
 # run the start script when launching a docker container
 CMD ["/usr/bin/run-hadoop.sh"]
