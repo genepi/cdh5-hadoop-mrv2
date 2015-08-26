@@ -36,17 +36,8 @@ RUN sudo chmod +x /usr/bin/run-hadoop.sh
 COPY conf/init-hdfs.sh /usr/bin/init-hdfs.sh
 RUN sudo chmod +x /usr/bin/init-hdfs.sh
 
-# Use a template to calculate the amount of map and reduce tasks depending on amount of cores
-COPY conf/mapred-site-template.xml /usr/bin/mapred-site-template.xml
-COPY conf/adapt-mapred-config.sh /usr/bin/adapt-mapred-config.sh
-RUN sudo chmod +x /usr/bin/adapt-mapred-config.sh
-
-
 COPY conf/execute-wordcount.sh /usr/bin/execute-wordcount.sh
 RUN sudo chmod +x /usr/bin/execute-wordcount.sh
-
-# MapReduce (50030), HDFS (50070) and Cloudgene (8080) Port
-EXPOSE 50030 50070 8080
 
 # run the start script when launching a docker container
 CMD ["/usr/bin/run-hadoop.sh"]
