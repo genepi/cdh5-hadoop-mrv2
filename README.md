@@ -10,7 +10,7 @@ Pull the image
 
 Run the image
 
-	docker run -it -p 19888:19888 seppinho/cdh5-hadoop-mrv2:latest
+	docker run -it -p 8088:8088 seppinho/cdh5-hadoop-mrv2:latest
 
 
 Give it a try and execute WordCount inside the started Docker container
@@ -20,4 +20,4 @@ Give it a try and execute WordCount inside the started Docker container
 
 Connect to the MapReduce web interface from your local OS to see the status of your executed job
 
-    http://localhost:19888
+    http://localhost:8088
