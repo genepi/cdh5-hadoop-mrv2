@@ -29,8 +29,8 @@ RUN sudo -u hdfs hdfs namenode -format
 RUN sudo useradd -ms /bin/bash cloudgene
 
 # copy script to start HDFS and MapReduce
-COPY conf/run-hadoop.sh /usr/bin/run-hadoop.sh
-RUN sudo chmod +x /usr/bin/run-hadoop.sh
+COPY conf/run-hadoop-initial.sh /usr/bin/run-hadoop-initial.sh
+RUN sudo chmod +x /usr/bin/run-hadoop-initial.sh
 
 # generate some HDFS directories at startup
 COPY conf/init-hdfs.sh /usr/bin/init-hdfs.sh
@@ -53,6 +53,3 @@ EXPOSE 19888
 EXPOSE 8030 8031 8032 8033 8040 8042
 #Yarn MapReduce Port
 EXPOSE 8088
-
-# run the start script when launching a docker container
-CMD ["/usr/bin/run-hadoop.sh"]

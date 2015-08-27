@@ -10,7 +10,7 @@ Pull the image
 
 Run the image
 
-	docker run -it -p 8088:8088 seppinho/cdh5-hadoop-mrv2:latest
+	docker run -it -p 8088:8088 seppinho/cdh5-hadoop-mrv2:latest run-hadoop-initial.sh
 
 
 Give it a try and execute WordCount inside the started Docker container
