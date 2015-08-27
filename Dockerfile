@@ -45,13 +45,14 @@ COPY conf/execute-wordcount.sh /usr/bin/execute-wordcount.sh
 RUN sudo chmod +x /usr/bin/execute-wordcount.sh
 
 # Credits to https://github.com/sequenceiq/hadoop-docker/blob/master/Dockerfile
-#Hdfs ports
+#HDFS Ports
 EXPOSE 50010 50020 50070 50075 50090
-# Mapred ports
+# History Server Port
 EXPOSE 19888
-#Yarn ports
-EXPOSE 8030 8031 8032 8033 8040 8042 8088
-#Other ports
-EXPOSE 49707 2122   
+#Yarn Ports
+EXPOSE 8030 8031 8032 8033 8040 8042
+#Yarn MapReduce Port
+EXPOSE 8088
+
 # run the start script when launching a docker container
 CMD ["/usr/bin/run-hadoop.sh"]
