@@ -17,7 +17,7 @@ RUN sudo dpkg -i cdh5-repository_1.0_all.deb
 
 # update packages
 RUN sudo apt-get update -y
-RUN sudo apt-get install jsvc -y
+
 # Install Java v7
 RUN sudo apt-get install oracle-java7-installer -y
 
