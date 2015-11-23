@@ -6,7 +6,7 @@ MAINTAINER Sebastian Schoenherr <sebastian.schoenherr@i-med.ac.at>
 WORKDIR /
 
 # Install some basic tools
-RUN sudo apt-get install wget software-properties-common  -y
+RUN sudo apt-get install wget apt-transport-https software-properties-common  -y
 
 #Install Prerequistes
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
