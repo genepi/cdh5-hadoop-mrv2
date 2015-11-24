@@ -5,6 +5,10 @@
 for x in `cd /etc/init.d ; ls hadoop-hdfs-*` ; do sudo service $x start ; done
 sudo /usr/bin/init-hdfs.sh
 
+# adapt MapReduce configuration
+sudo /usr/bin/adapt-mapred-config.sh
+
+
 sudo service hadoop-yarn-resourcemanager start
 sudo service hadoop-yarn-nodemanager start
 sudo service hadoop-mapreduce-historyserver start
