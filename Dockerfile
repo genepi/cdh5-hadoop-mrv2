@@ -19,7 +19,7 @@ RUN sudo dpkg -i cdh5-repository_1.0_all.deb
 RUN sudo apt-get update -y
 
 # Install Java v7
-RUN sudo apt-get install oracle-java7-installer jsvc -y
+RUN sudo apt-get install oracle-java7-installer jsvc git maven -y
 
 #Install latest CDH5 YARN
 RUN sudo apt-get install hadoop-conf-pseudo -y
