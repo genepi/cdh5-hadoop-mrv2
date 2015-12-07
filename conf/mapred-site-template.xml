@@ -2,37 +2,46 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 
 <configuration>
-  <property>
+
+
+ <property>
     <name>mapred.job.tracker</name>
     <value>localhost:8021</value>
   </property>
- 
+
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+
+  <property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>localhost:10020</value>
+  </property>
+  <property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>localhost:19888</value>
+  </property>
+
+  <property>
+    <description>To set the value of tmp directory for map and reduce tasks.</description>
+    <name>mapreduce.task.tmp.dir</name>
+    <value>/var/lib/hadoop-mapreduce/cache/${user.name}/tasks</value>
+  </property>
+
  <property>
     <name>mapred.tasktracker.map.tasks.maximum</name>
     <value>AMOUNT</value>
   </property>
 
  <property>
-    <name>mapred.tasktracker.reduce.tasks.maximum</name>
+    <name>mapreduce.tasktracker.reduce.tasks.maximum</name>
     <value>AMOUNT</value>
   </property>
 
 <property>
-    <name>mapred.child.java.opts</name>
+    <name>mapreduce.child.java.opts</name>
     <value>-Xmx1024m</value>
   </property>
-
-  <property>
-    <name>mapred.jobtracker.plugins</name>
-    <value>org.apache.hadoop.thriftfs.ThriftJobTrackerPlugin</value>
-    <description>Comma-separated list of jobtracker plug-ins to be activated.
-    </description>
-  </property>
-  <property>
-    <name>jobtracker.thrift.address</name>
-    <value>0.0.0.0:9290</value>
-  </property>
-
-
 
 </configuration>
