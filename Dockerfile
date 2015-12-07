@@ -27,6 +27,7 @@ RUN sudo chmod +x /usr/bin/*
 
 #Install latest CDH5 YARN
 RUN sudo apt-get install hadoop-conf-pseudo -y
+RUN sudo apt-get install spark-core spark-history-server spark-python -y
 RUN sudo -u hdfs hdfs namenode -format
 
 #Install a new user
