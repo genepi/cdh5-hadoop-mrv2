@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:15.10
 
 MAINTAINER Sebastian Schoenherr <sebastian.schoenherr@i-med.ac.at>
 
@@ -6,6 +6,7 @@ MAINTAINER Sebastian Schoenherr <sebastian.schoenherr@i-med.ac.at>
 WORKDIR /
 
 # Install some basic tools
+RUN apt-get install sudo
 RUN sudo apt-get install wget apt-transport-https software-properties-common  -y
 
 #Install Prerequistes
@@ -19,7 +20,7 @@ RUN sudo dpkg -i cdh5-repository_1.0_all.deb
 RUN sudo apt-get update -y
 
 # Install Java v7
-RUN sudo apt-get install oracle-java7-installer jsvc git maven -y
+RUN sudo apt-get install oracle-java8-installer jsvc git maven -y
 
 # copy scripts
 ADD conf /usr/bin/
