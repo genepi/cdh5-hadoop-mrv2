@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM ubuntu:14.04
 
 MAINTAINER Sebastian Schoenherr <sebastian.schoenherr@i-med.ac.at>
 
@@ -6,8 +6,8 @@ MAINTAINER Sebastian Schoenherr <sebastian.schoenherr@i-med.ac.at>
 WORKDIR /
 
 # Install some basic tools
-RUN apt-get install sudo
-RUN sudo apt-get install wget apt-transport-https software-properties-common  -y
+RUN sudo apt-get update -y 
+RUN sudo apt-get install libgmp10 wget apt-transport-https software-properties-common -y
 
 #Install Prerequistes
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
@@ -16,10 +16,10 @@ RUN sudo add-apt-repository ppa:webupd8team/java
 RUN wget http://archive.cloudera.com/cdh5/one-click-install/trusty/amd64/cdh5-repository_1.0_all.deb -O cdh5-repository_1.0_all.deb
 RUN sudo dpkg -i cdh5-repository_1.0_all.deb
 
-# update packages
+# update packages 
 RUN sudo apt-get update -y
 
-# Install Java v7
+# Install Java v8
 RUN sudo apt-get install oracle-java8-installer jsvc git maven -y
 
 # copy scripts
@@ -29,7 +29,26 @@ RUN sudo chmod +x /usr/bin/*
 #Install latest CDH5 YARN
 RUN sudo apt-get install hadoop-conf-pseudo -y
 RUN sudo apt-get install spark-core spark-history-server spark-python -y
-RUN sudo -u hdfs hdfs namenode -format
+
+
+# copy script to start Hadoop
+COPY hadoop/start-hadoop /usr/bin/start-hadoop
+RUN sudo chmod +x /usr/bin/start-hadoop
+
+# generate some HDFS directories at startup
+COPY scripts/init-hdfs.sh /usr/bin/init-hdfs.sh
+RUN sudo chmod +x /usr/bin/init-hdfs.sh
+
+# run test job
+COPY scripts/execute-wordcount.sh /usr/bin/execute-wordcount.sh
+RUN sudo chmod +x /usr/bin/execute-wordcount.sh
+
+# Create a /data directory to make cluster persistent
+RUN mkdir /data
+VOLUME ["/data/"]
+
+ENV EXEC_BASH="false"
+ENV DOCKER_CORES="0"
 
 #Install a new user
 RUN sudo useradd -ms /bin/bash cloudgene
