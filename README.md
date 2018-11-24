@@ -10,7 +10,7 @@ This Docker image allows you to execute Hadoop jobs with MapReduce based on YARN
 
 ## Run the image
 
-	docker run -it -p 8088:8088 genepi/cdh5-hadoop-mrv2:latest run-hadoop-initial.sh
+	docker run -it -p 8088:8088 genepi/cdh5-hadoop-mrv2:latest start-hadoop
 
 
 ## Execute WordCount 
